@@ -2,177 +2,156 @@
 
 ## Isomorphisms: Equivalent Physical Descriptions
 
-### What an Isomorphism Means Physically
+### Definition
 
-An **isomorphism** between two Hilbert spaces means they are **mathematically identical** — there's a one-to-one correspondence that preserves all the structure (inner products, vector addition, scalar multiplication).
+An **isomorphism** between two Hilbert spaces is a one-to-one correspondence that preserves all mathematical structure: inner products, vector addition, and scalar multiplication.
 
----
+### Physical Consequences of Isomorphisms
 
-## Physical Consequences of Isomorphisms
+#### 1. Equivalent Physical Descriptions
 
-### 1. Equivalent Physical Descriptions
+Isomorphic Hilbert spaces describe the same physics in different mathematical representations.
 
-If two Hilbert spaces are isomorphic, they describe **the same physics** in different mathematical representations.
+**Example:** $\mathbb{C}^2$ and ammonia molecule states
 
-**Example:** $\mathbb{C}^2$ and the ammonia molecule states
+- Column vector representation: $\begin{bmatrix} \alpha \\ \beta \end{bmatrix}$
+- Ket notation: $\alpha|↑\rangle + \beta|↓\rangle$
+- Physical basis: $\alpha|\text{N up}\rangle + \beta|\text{N down}\rangle$
 
-- You can represent spin-½ states as: $\begin{bmatrix} \alpha \\ \beta \end{bmatrix}$
-- Or as: $\alpha|↑\rangle + \beta|↓\rangle$ (ket notation)
-- Or as: $\alpha|\text{N up}\rangle + \beta|\text{N down}\rangle$ (nitrogen position in ammonia)
+These are equivalent representations of the same quantum system.
 
-All three are **isomorphic** — they're just different ways of writing the same quantum system!
+#### 2. Universal Structure of Two-Level Systems
 
-### 2. All 2-Level Systems Are Fundamentally The Same
-
-Any quantum system with **two distinguishable states** is isomorphic to $\mathbb{C}^2$:
+Any quantum system with two distinguishable states is isomorphic to $\mathbb{C}^2$:
 
 - Electron spin: $|↑\rangle, |↓\rangle$
-- Photon polarization: $|H\rangle, |V\rangle$ (horizontal/vertical)
+- Photon polarization: $|H\rangle, |V\rangle$
 - Ammonia molecule: $|\text{N up}\rangle, |\text{N down}\rangle$
-- Qubit in quantum computing: $|0\rangle, |1\rangle$
+- Qubit: $|0\rangle, |1\rangle$
 
-**Physical consequence:** Techniques, theorems, and intuitions developed for one system **automatically apply** to all others. If you understand spin-½, you understand qubits!
+Techniques and results developed for one system apply to all isomorphic systems.
 
-### 3. Choice of Basis is Arbitrary
+#### 3. Basis Independence
 
-Since the spaces are isomorphic, **no basis is physically privileged**. You can choose whatever basis is most convenient:
+No basis is physically privileged. Common choices include:
 
-- Energy eigenbasis for solving dynamics
+- Energy eigenbasis for dynamics
 - Position basis for spatial problems
 - Momentum basis for scattering problems
 
-The physics doesn't change — only your computational convenience does.
+The choice affects computational convenience, not physical predictions.
 
-### 4. Universal Quantum Phenomena
+#### 4. Universal Quantum Phenomena
 
-Isomorphic systems exhibit the **same quantum behavior**:
+Isomorphic systems exhibit identical quantum behavior:
 
-- Same uncertainty relations
-- Same entanglement properties
-- Same measurement statistics
-- Same interference patterns
+- Uncertainty relations
+- Entanglement properties
+- Measurement statistics
+- Interference patterns
 
-**Example:** Bell inequality violations occur identically for photon polarization, electron spins, or any other 2-level isomorphic system.
+Bell inequality violations occur identically across all two-level systems.
 
-### 5. Experimental Equivalence
+#### 5. Experimental Equivalence
 
-If two systems are isomorphic, you can perform **analogous experiments** on both:
+Isomorphic systems admit analogous experimental implementations:
 
-- Stern-Gerlach for spins ↔ Polarizers for photons
-- Both implement the same quantum measurements on isomorphic $\mathbb{C}^2$ spaces
+- Stern-Gerlach apparatus for spins
+- Polarizers for photons
 
-### 6. Dimension Determines Physics
+Both implement measurements on isomorphic $\mathbb{C}^2$ spaces.
 
-The **dimensionality** of the Hilbert space is what matters physically:
+#### 6. Dimensional Classification
+
+The dimensionality of the Hilbert space determines fundamental quantum properties:
 
 - **dim = 2:** Qubits, spin-½, two-level atoms
 - **dim = 3:** Spin-1, qutrits
-- **dim = ∞:** Particle in space (position/momentum)
+- **dim = ∞:** Particles in continuous space
 
-Systems with the same dimension share fundamental quantum properties regardless of their physical origin.
+#### 7. Quantum Computing Implementation
 
-### 7. Quantum Computing Universality
+Any two-level system can serve as a qubit:
 
-Any 2-level system can be a **qubit** — it doesn't matter if it's:
 - Superconducting circuits
 - Trapped ions
 - Photon polarization
 - Quantum dots
 
-They're all isomorphic to $\mathbb{C}^2$, so they can all perform the same quantum computations!
+All are isomorphic to $\mathbb{C}^2$ and support equivalent computational operations.
+
+### Summary: Isomorphisms
+
+Isomorphic systems are mathematically identical despite differing physical realizations. The abstract Hilbert space structure provides a universal framework applicable to all isomorphic physical systems.
 
 ---
 
-## Bottom Line: Isomorphisms
+## Unitary Transformations: Bridges Between Representations
 
-**Isomorphism means: "These look different physically, but mathematically they're the same quantum system."**
+### Definition
 
-This is why quantum mechanics is so powerful — the same mathematical framework applies universally across completely different physical systems. Understanding the abstract Hilbert space structure lets you understand **all** physical realizations at once!
+A **unitary matrix** $U$ implements a change of basis, transforming between different representations while preserving physical content.
 
----
-
-# Unitary Matrices: Bridges Between Representations
-
-## The Key Idea
-
-A **unitary matrix** $U$ acts as a **change of basis** — it's the bridge that takes you from one representation of your quantum system to another, while preserving all the physical content.
-
-If you have a state $|\psi\rangle$ in one basis and apply a unitary transformation:
+For a state $|\psi\rangle$ in one basis:
 
 $$|\psi'\rangle = U|\psi\rangle$$
 
-You get the **same physical state** expressed in a different basis.
+represents the same physical state in a different basis.
 
----
+### Physical Preservation
 
-## Why Unitary? Physical Preservation
-
-Unitary matrices preserve the inner product:
+Unitary matrices preserve inner products:
 
 $$\langle \psi | \phi \rangle = \langle \psi' | \phi' \rangle$$
 
 where $|\psi'\rangle = U|\psi\rangle$ and $|\phi'\rangle = U|\phi\rangle$
 
-**This means they preserve:**
-- **Probabilities:** $|\langle \phi | \psi \rangle|^2$ (transition amplitudes)
-- **Norms:** $\|\psi\| = \|\psi'\|$ (normalization)
-- **Orthogonality:** If $\langle \psi | \phi \rangle = 0$, then $\langle \psi' | \phi' \rangle = 0$
+**Preserved quantities:**
+- Probabilities: $|\langle \phi | \psi \rangle|^2$
+- Norms: $\|\psi\| = \|\psi'\|$
+- Orthogonality relations
 
-So unitary transformations change the mathematical representation **without changing the physics**.
+Unitary transformations change mathematical representation without altering physical predictions.
 
----
+### Examples
 
-## Concrete Examples
+#### Example 1: Spin Basis Transformation
 
-### Example 1: Spin Bases
-
-For a spin-½ particle, you can use different bases:
-
-**$z$-basis (spin up/down along z-axis):**
+**$z$-basis:**
 $$|↑_z\rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad |↓_z\rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
 
-**$x$-basis (spin up/down along x-axis):**
+**$x$-basis:**
 $$|↑_x\rangle = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix}, \quad |↓_x\rangle = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ -1 \end{bmatrix}$$
 
-The **unitary matrix** that bridges them is:
+**Unitary transformation (Hadamard gate):**
 
 $$U = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$$
 
-This is actually a **Hadamard gate** in quantum computing!
+#### Example 2: Position-Momentum Transformation
 
-### Example 2: Position to Momentum
-
-The **Fourier transform** is a unitary operator that bridges position and momentum representations:
+The Fourier transform provides a unitary mapping between position and momentum representations:
 
 $$\tilde{\psi}(p) = \frac{1}{\sqrt{2\pi\hbar}} \int_{-\infty}^{\infty} e^{-ipx/\hbar} \psi(x) \, dx$$
 
-Same state, different representation!
+#### Example 3: Time Evolution
 
-### Example 3: Time Evolution
+The time evolution operator is unitary:
 
-The time evolution operator $U(t) = e^{-iHt/\hbar}$ is unitary and bridges:
-- State at time $t_0$: $|\psi(t_0)\rangle$
-- State at time $t$: $|\psi(t)\rangle = U(t-t_0)|\psi(t_0)\rangle$
+$$U(t) = e^{-iHt/\hbar}$$
 
-Different times, same physical system evolving.
+$$|\psi(t)\rangle = U(t-t_0)|\psi(t_0)\rangle$$
 
----
+### Operator Transformation
 
-## Operators Transform Too!
-
-When you change basis with $U$, observables also transform:
+Observables transform under basis changes:
 
 $$A' = U A U^\dagger$$
 
-**Important:** The eigenvalues (measurement outcomes) **don't change**:
-- If $A|a\rangle = a|a\rangle$
-- Then $A'|a'\rangle = a|a'\rangle$ where $|a'\rangle = U|a\rangle$
+**Eigenvalue preservation:** If $A|a\rangle = a|a\rangle$, then $A'|a'\rangle = a|a'\rangle$ where $|a'\rangle = U|a\rangle$
 
-The **spectrum** (possible measurement outcomes) is preserved — only the matrix representation changes.
+The spectrum (possible measurement outcomes) is basis-independent.
 
----
-
-## The Mathematical Condition
+### Mathematical Definition
 
 A matrix $U$ is unitary if:
 
@@ -180,55 +159,57 @@ $$U^\dagger U = U U^\dagger = I$$
 
 where $U^\dagger$ is the conjugate transpose.
 
-This guarantees:
-- **Reversibility:** $U^{-1} = U^\dagger$ (you can always go back)
-- **Norm preservation:** $\|U|\psi\rangle\| = \||\psi\rangle\|$
-- **The bridge goes both ways:** From representation A to B, and back
+**Properties:**
+- Reversibility: $U^{-1} = U^\dagger$
+- Norm preservation: $\|U|\psi\rangle\| = \||\psi\rangle\|$
+- Bidirectional mapping between representations
+
+### Physical Implications
+
+#### Equivalence of Representations
+
+Representations related by unitary transformations yield identical predictions for all physical observables.
+
+#### Gauge Freedom
+
+The freedom to choose convenient representations. Unitary transformations provide the mapping between choices.
+
+#### Symmetry Implementation
+
+Continuous symmetries are implemented by unitary operators:
+
+- Rotation: $U(\theta) = e^{-i\theta J_z/\hbar}$
+- Translation: $U(a) = e^{-ipa/\hbar}$
 
 ---
 
-## Why This Matters in Quantum Mechanics
-
-### Physical Equivalence
-
-Different representations related by unitary transformations are **physically equivalent** — they make identical predictions for all experiments.
-
-### Gauge Freedom
-
-You have the freedom to choose whatever representation is most convenient. The unitary transformation is your "dictionary" between choices.
-
-### Symmetries
-
-Continuous symmetries (rotations, translations) are implemented by **continuous families of unitary operators**. For example:
-- Rotation by angle $\theta$: $U(\theta) = e^{-i\theta J_z/\hbar}$
-- Translation by distance $a$: $U(a) = e^{-ipa/\hbar}$
-
----
-
-## The Connection: Isomorphisms and Unitary Transformations
+## The Connection
 
 ### Isomorphisms
-Connect **different physical systems** with the same mathematical structure (e.g., spin-½ and ammonia molecule are both $\mathbb{C}^2$)
+
+Connect different physical systems sharing the same mathematical structure.
+
+**Example:** Spin-½ particles and ammonia molecules are both described by $\mathbb{C}^2$.
 
 ### Unitary Transformations
-Connect **different representations** of the **same physical system** (e.g., position basis vs. momentum basis)
 
-**Both preserve the physics** — isomorphisms show that different systems share the same quantum structure, while unitary transformations let you move between equivalent descriptions of one system.
+Connect different representations of the same physical system.
 
----
+**Example:** Position basis and momentum basis describe the same quantum state.
 
-## Summary
+Both preserve physical content. Isomorphisms reveal structural equivalence across different systems. Unitary transformations enable navigation between equivalent descriptions of a single system.
 
-**Unitary matrices are bridges between mathematical representations** that:
-1. Preserve all physical content (probabilities, norms, orthogonality)
-2. Connect different bases/pictures of the same system
-3. Are reversible (you can go back and forth)
-4. Represent symmetries and time evolution
+### Summary
 
-**Unitary transformations are the "allowed moves" in quantum mechanics** — they let you change your mathematical viewpoint without changing the physics!
+**Unitary transformations:**
+- Preserve probabilities, norms, and orthogonality
+- Connect different bases of the same Hilbert space
+- Are reversible operations
+- Implement symmetries and time evolution
 
-**Isomorphisms tell us:** "These different physical systems are mathematically the same."
+**Isomorphisms:**
+- Establish mathematical equivalence between different physical systems
+- Enable transfer of techniques and results
+- Reveal universal quantum structure
 
-**Unitary transformations tell us:** "These different descriptions are physically equivalent."
-
-Together, they reveal the deep structure of quantum mechanics: the same mathematical framework applies universally, and we have complete freedom in how we choose to represent it.
+Together, these concepts demonstrate that quantum mechanics possesses a universal mathematical structure with complete freedom in choice of representation.
