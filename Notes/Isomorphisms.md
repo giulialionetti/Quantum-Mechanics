@@ -115,13 +115,17 @@ Unitary transformations change mathematical representation without altering phys
 
 ### Examples
 
-#### Example 1: Spin Basis Transformation
+### Example 1: Spin Basis Transformation
 
-**$z$-basis:**
+**z-basis:**
 $$|↑_z\rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad |↓_z\rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
 
-**$x$-basis:**
+**x-basis:**
 $$|↑_x\rangle = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix}, \quad |↓_x\rangle = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ -1 \end{bmatrix}$$
+
+**Unitary transformation (Hadamard gate):**
+
+$$U = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$$
 
 **Unitary transformation (Hadamard gate):**
 
