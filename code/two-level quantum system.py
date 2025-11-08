@@ -200,7 +200,7 @@ ax2.legend(fontsize=10)
 ax2.set_ylim(bottom=0)
 
 plt.tight_layout()
-plt.savefig('/mnt/user-data/outputs/quantum_two_level_analysis.png', dpi=300, bbox_inches='tight')
+plt.savefig('quantum_two_level_analysis.png', dpi=300, bbox_inches='tight')
 print("\n✓ Plot saved to quantum_two_level_analysis.png")
 
 # Summary
