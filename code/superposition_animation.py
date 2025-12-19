@@ -1,17 +1,10 @@
-"""
-ALL-IN-ONE: Quantum Interference Animation
-Creates frames AND assembles them into a GIF!
-"""
+
 
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 import os
 import glob
-
-print("\n" + "="*60)
-print("QUANTUM INTERFERENCE ANIMATION GENERATOR")
-print("="*60 + "\n")
 
 # Set up the box
 L = 1.0
@@ -25,12 +18,6 @@ psi_2 = np.sqrt(2) * np.sin(2 * np.pi * x / L)  # n=2
 output_dir = './qm_animation_frames'
 os.makedirs(output_dir, exist_ok=True)
 
-# ===================================================================
-# STEP 1: CREATE FRAMES
-# ===================================================================
-print("STEP 1: Creating animation frames...")
-print("-"*60)
-
 n_frames = 30
 alphas = np.linspace(0, 1, n_frames)
 
@@ -41,7 +28,7 @@ for i, alpha in enumerate(alphas):
     
     ax1, ax2, ax3, ax4 = axes.flatten()
     
-    # Create superposition with current alpha
+   
     if alpha < 0.01:
         psi_super = psi_1.copy()
         label_text = "|n=1⟩ only"
@@ -54,9 +41,9 @@ for i, alpha in enumerate(alphas):
         if alpha < 0.99:
             label_text = f"Adding |n=2⟩... {progress}%"
         else:
-            label_text = "(|n=1⟩ + |n=2⟩)/√2 ✓"
+            label_text = "(|n=1⟩ + |n=2⟩)/√2 "
     
-    # ============ Plot 1: Individual wavefunctions ============
+    
     ax1.plot(x, psi_1, 'b-', linewidth=2.5, label='ψ₁ (n=1)', alpha=0.8)
     ax1.plot(x, psi_2 * alpha, 'r-', linewidth=2.5, label=f'ψ₂ (n=2) × {alpha:.2f}', alpha=0.8)
     ax1.axhline(y=0, color='k', linestyle='-', linewidth=0.5)
@@ -70,7 +57,7 @@ for i, alpha in enumerate(alphas):
     ax1.set_xlim([0, 1])
     ax1.set_ylim([-2, 2])
     
-    # ============ Plot 2: Superposition wavefunction ============
+   
     ax2.plot(x, psi_1, 'b--', linewidth=1, alpha=0.3, label='ψ₁')
     ax2.plot(x, psi_2 * alpha, 'r--', linewidth=1, alpha=0.3, label='ψ₂')
     ax2.plot(x, psi_super, 'purple', linewidth=3.5, label=label_text)
@@ -83,7 +70,7 @@ for i, alpha in enumerate(alphas):
     ax2.set_xlim([0, 1])
     ax2.set_ylim([-2.5, 2.5])
     
-    # Annotate interference regions
+    
     if alpha > 0.8:
         ax2.annotate('Constructive\nInterference', xy=(0.25, 1.7), fontsize=11,
                     bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.9),
@@ -92,7 +79,7 @@ for i, alpha in enumerate(alphas):
                     bbox=dict(boxstyle='round', facecolor='lightcoral', alpha=0.9),
                     ha='center')
     
-    # ============ Plot 3: Probability density ============
+    
     prob_super = psi_super**2
     ax3.plot(x, prob_super, 'purple', linewidth=3.5)
     ax3.fill_between(x, 0, prob_super, alpha=0.5, color='purple')
@@ -113,7 +100,7 @@ for i, alpha in enumerate(alphas):
                 markersize=15, label=f'Right: {prob_super[right_peak_idx]:.2f}', zorder=5)
         ax3.legend(loc='upper right', fontsize=11)
     
-    # ============ Plot 4: Value comparison ============
+   
     idx_025 = 250
     idx_075 = 750
     
@@ -156,53 +143,24 @@ for i, alpha in enumerate(alphas):
 
 print(f"\n✓ All {n_frames} frames created!")
 
-# ===================================================================
-# STEP 2: CREATE GIF
-# ===================================================================
-print("\n" + "-"*60)
-print("STEP 2: Assembling frames into GIF...")
-print("-"*60)
 
-# Get all frame files
 frame_files = sorted(glob.glob(os.path.join(output_dir, 'frame_*.png')))
 print(f"Found {len(frame_files)} frames")
 
-# Load images
+
 images = []
 for f in frame_files:
     img = Image.open(f)
     images.append(img)
-    
-print("Loading frames... ", end="")
-print("✓")
 
-# Save as GIF
 output_gif = './quantum_interference.gif'
 images[0].save(
     output_gif,
     save_all=True,
     append_images=images[1:],
-    duration=100,  # milliseconds per frame
-    loop=0  # infinite loop
+    duration=100,  
+    loop=0  
 )
 
 file_size_mb = os.path.getsize(output_gif) / 1024 / 1024
-
-print(f"✓ GIF created: {output_gif}")
-print(f"  File size: {file_size_mb:.1f} MB")
-
-# ===================================================================
-# SUMMARY
-# ===================================================================
-print("\n" + "="*60)
-print("ANIMATION COMPLETE! 🎉")
-print("="*60)
-print(f"\nOutput files:")
-print(f"  📁 Frames: {os.path.abspath(output_dir)}")
-print(f"  🎬 Animation: {os.path.abspath(output_gif)}")
-print(f"\nThe animation shows:")
-print("  • How quantum states interfere")
-print("  • Constructive interference (left side)")
-print("  • Destructive interference (right side)")
-print("  • Why superposition ≠ classical mixture!")
-print("="*60 + "\n")
+print(f"\n✓ Animation saved as {output_gif} ({file_size_mb:.2f} MB)")

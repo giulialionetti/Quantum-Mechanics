@@ -1,28 +1,20 @@
-"""
-Step-by-step Animation of Quantum Interference
-Creates individual frames showing the build-up of interference
-"""
 
 import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-# Set up the box
 L = 1.0
 x = np.linspace(0, L, 1000)
 
-# Define the two wavefunctions
-psi_1 = np.sqrt(2) * np.sin(1 * np.pi * x / L)  # n=1
-psi_2 = np.sqrt(2) * np.sin(2 * np.pi * x / L)  # n=2
+psi_1 = np.sqrt(2) * np.sin(1 * np.pi * x / L)  
+psi_2 = np.sqrt(2) * np.sin(2 * np.pi * x / L)  
 
-# Create output directory
 output_dir = './qm_animation_frames'
 os.makedirs(output_dir, exist_ok=True)
 
 print("Creating animation frames...")
 print("="*60)
 
-# Create frames showing gradual addition of ψ₂ to ψ₁
 n_frames = 30
 alphas = np.linspace(0, 1, n_frames)
 
@@ -33,7 +25,6 @@ for i, alpha in enumerate(alphas):
     
     ax1, ax2, ax3, ax4 = axes.flatten()
     
-    # Create superposition with current alpha
     if alpha < 0.01:
         psi_super = psi_1.copy()
         label_text = "|n=1⟩ only"
@@ -48,7 +39,7 @@ for i, alpha in enumerate(alphas):
         else:
             label_text = "(|n=1⟩ + |n=2⟩)/√2 ✓"
     
-    # ============ Plot 1: Individual wavefunctions ============
+    
     ax1.plot(x, psi_1, 'b-', linewidth=2.5, label='ψ₁ (n=1)', alpha=0.8)
     ax1.plot(x, psi_2 * alpha, 'r-', linewidth=2.5, label=f'ψ₂ (n=2) × {alpha:.2f}', alpha=0.8)
     ax1.axhline(y=0, color='k', linestyle='-', linewidth=0.5)
@@ -62,7 +53,7 @@ for i, alpha in enumerate(alphas):
     ax1.set_xlim([0, 1])
     ax1.set_ylim([-2, 2])
     
-    # ============ Plot 2: Superposition wavefunction ============
+    
     ax2.plot(x, psi_1, 'b--', linewidth=1, alpha=0.3, label='ψ₁')
     ax2.plot(x, psi_2 * alpha, 'r--', linewidth=1, alpha=0.3, label='ψ₂')
     ax2.plot(x, psi_super, 'purple', linewidth=3.5, label=label_text)
@@ -75,7 +66,7 @@ for i, alpha in enumerate(alphas):
     ax2.set_xlim([0, 1])
     ax2.set_ylim([-2.5, 2.5])
     
-    # Annotate interference regions if near full superposition
+   
     if alpha > 0.8:
         ax2.annotate('Constructive\nInterference', xy=(0.25, 1.7), fontsize=11,
                     bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.9),
@@ -84,7 +75,7 @@ for i, alpha in enumerate(alphas):
                     bbox=dict(boxstyle='round', facecolor='lightcoral', alpha=0.9),
                     ha='center')
     
-    # ============ Plot 3: Probability density ============
+    
     prob_super = psi_super**2
     ax3.plot(x, prob_super, 'purple', linewidth=3.5)
     ax3.fill_between(x, 0, prob_super, alpha=0.5, color='purple')
@@ -95,7 +86,7 @@ for i, alpha in enumerate(alphas):
     ax3.set_xlim([0, 1])
     ax3.set_ylim([0, 3.5])
     
-    # Mark peaks if near full superposition
+    
     if alpha > 0.8:
         left_peak_idx = np.argmax(prob_super[:500])
         right_peak_idx = 500 + np.argmax(prob_super[500:])
@@ -105,9 +96,9 @@ for i, alpha in enumerate(alphas):
                 markersize=15, label=f'Right: {prob_super[right_peak_idx]:.2f}', zorder=5)
         ax3.legend(loc='upper right', fontsize=11)
     
-    # ============ Plot 4: Value comparison at x=0.25 and x=0.75 ============
-    idx_025 = 250  # x ≈ 0.25
-    idx_075 = 750  # x ≈ 0.75
+   
+    idx_025 = 250  
+    idx_075 = 750  
     
     values_at_025 = [psi_1[idx_025], psi_2[idx_025] * alpha, psi_super[idx_025]]
     values_at_075 = [psi_1[idx_075], psi_2[idx_075] * alpha, psi_super[idx_075]]
@@ -130,7 +121,7 @@ for i, alpha in enumerate(alphas):
     ax4.grid(True, alpha=0.3, axis='y')
     ax4.set_ylim([-1.6, 2])
     
-    # Add text annotations
+   
     if alpha > 0.8:
         ax4.text(2, 1.5, 'LEFT:\nBoth +\n→ ADD', ha='center', fontsize=10, 
                 bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.8))
@@ -139,22 +130,8 @@ for i, alpha in enumerate(alphas):
     
     plt.tight_layout(rect=[0, 0, 1, 0.96])
     
-    # Save frame
+    
     filename = os.path.join(output_dir, f'frame_{i:03d}.png')
     plt.savefig(filename, dpi=100, bbox_inches='tight')
     plt.close()
     
-    if (i+1) % 5 == 0:
-        print(f"  Frame {i+1}/{n_frames} complete... ({progress}%)")
-
-print("\n" + "="*60)
-print("FRAMES COMPLETE!")
-print("="*60)
-print(f"\nSaved {n_frames} frames to: {os.path.abspath(output_dir)}")
-print("\nTo create a GIF or video from these frames:")
-print("\n1. Using ImageMagick (if installed):")
-print(f"   convert -delay 10 -loop 0 {output_dir}/frame_*.png animation.gif")
-print("\n2. Using ffmpeg (if installed):")
-print(f"   ffmpeg -framerate 10 -i {output_dir}/frame_%03d.png -c:v libx264 animation.mp4")
-print("\n3. Or just view the frames one by one - they show the progression!")
-print("="*60)

@@ -2,29 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.linalg import expm
 
-# Define the problem parameters
-E0 = 1.0  # Energy eigenvalue for |0⟩ (we can set this to any non-zero value)
-E1 = 0.0  # Energy eigenvalue for |1⟩
 
-print("=" * 70)
-print("TWO-LEVEL QUANTUM SYSTEM ANALYSIS")
-print("=" * 70)
-print(f"\nEnergy eigenvalues: E₀ = {E0}, E₁ = {E1}")
+E0 = 1.0  # |0⟩ 
+E1 = 0.0  # |1⟩
 
-# Part (a): Determine α and normalization constants
-print("\n" + "=" * 70)
-print("PART (a): Determining α and normalization constants")
-print("=" * 70)
-
-# Position eigenstates in energy basis:
-# |x₀⟩ = c₀(|0⟩ + |1⟩)
-# |x₁⟩ = c₁(|0⟩ + α|1⟩)
-
-# For position operator X to be Hermitian, we need X|x₀⟩ = x₀|x₀⟩ and X|x₁⟩ = x₁|x₁⟩
-# Also, position eigenstates must be orthogonal: ⟨x₀|x₁⟩ = 0
-
-# Orthogonality condition: ⟨x₀|x₁⟩ = c₀*c₁*(1 + α) = 0
-# Since c₀, c₁ ≠ 0 (for non-trivial states), we need: 1 + α = 0
 alpha = -1.0
 print(f"\nFrom orthogonality condition ⟨x₀|x₁⟩ = 0:")
 print(f"α = {alpha}")

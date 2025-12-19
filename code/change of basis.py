@@ -13,32 +13,15 @@ import matplotlib.pyplot as plt
 import os
 
 class ParticleInBox:
-    """ 
-      Energy eigenstates: ψ_n(x) = √(2/L) * sin(nπx/L)
-      where √(2/L) is the normalization constant and n is a positive integer.
-    """
     
     def __init__(self, L=1.0, n_max=10, n_points=1000):
-        """
-        Parameters:
-        -----------
-        L : float
-            Length of the box
-        n_max : int
-            Maximum energy level to consider
-        n_points : int
-            Number of position grid points
-        """
+        
         self.L = L
         self.n_max = n_max
         self.x = np.linspace(0, L, n_points)
         self.dx = self.x[1] - self.x[0]
         
     def position_wavefunction(self, n, x):
-        """
-        Position-space wavefunction for energy eigenstate |n⟩
-    
-        """
         
         n_quantum = n + 1
         
@@ -48,21 +31,7 @@ class ParticleInBox:
         return psi
     
     def energy_to_position(self, coefficients):
-        """
-        Transform state from energy basis to position basis.
-        
-        |ψ⟩ = Σ_n c_n |n⟩  →  ψ(x) = Σ_n c_n ψ_n(x)
-        
-        Parameters:
-        -----------
-        coefficients : array-like
-            Coefficients c_n in the energy eigenstate basis
-            
-        Returns:
-        --------
-        psi_x : ndarray
-            Wavefunction in position space ψ(x)
-        """
+       
         coefficients = np.array(coefficients)
         n_states = len(coefficients)
         
@@ -74,21 +43,7 @@ class ParticleInBox:
         return psi_x
     
     def position_to_energy(self, psi_x):
-        """
-        Transform state from position basis to energy basis.
-        
-        ψ(x)  →  c_n = ∫ ψ_n*(x) ψ(x) dx
-        
-        Parameters:
-        -----------
-        psi_x : ndarray
-            Wavefunction in position space
-            
-        Returns:
-        --------
-        coefficients : ndarray
-            Coefficients in the energy eigenstate basis
-        """
+       
         coefficients = np.zeros(self.n_max, dtype=complex)
         
         for n in range(self.n_max):
@@ -101,7 +56,7 @@ class ParticleInBox:
 
 
 def example_ground_state(output_dir='./'):
-    """Example: Ground state (n=1) in both bases"""
+   
     print("=" * 60)
     print("Example 1: Ground State |n=1⟩")
     print("=" * 60)
