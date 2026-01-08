@@ -11,7 +11,7 @@ x = np.linspace(0, L, 1000)
 psi_1 = np.sqrt(2) * np.sin(1 * np.pi * x / L)  # n=1
 psi_2 = np.sqrt(2) * np.sin(2 * np.pi * x / L)  # n=2
 
-# Superposition (just add them!)
+# Superposition 
 psi_super = (psi_1 + psi_2) / np.sqrt(2)
 
 # Probability densities
@@ -19,7 +19,7 @@ prob_1 = psi_1**2
 prob_2 = psi_2**2
 prob_super = psi_super**2
 
-# Create detailed visualization
+
 fig = plt.figure(figsize=(14, 10))
 
 # Top row: Individual wavefunctions
